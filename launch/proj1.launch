@@ -1,0 +1,57 @@
+<launch>
+	<!-- system paremeters -->
+
+	<arg name="total_blocks" />
+	<arg name="configu" />
+    	<arg name="gripper_loc" />
+    	<arg name="real_or_sym" />
+    	<arg name="hand" /> <!-- left, right, or both -->
+
+	    <!-- total number of blocks in system -->
+
+	<param name="num_blocks" type="int" value="$(arg total_blocks)" />
+	
+	    <!-- used for "both" mode, 1 is right and -1 is left -->
+	<param name="hand_switch" type="int" value="1" />
+
+	    <!-- initial configuration of blocks -->
+ 	    <!-- "scattered" = scattered (all blocks on ground) -->
+	    <!-- "stacked_ascending" = stacked in ascending order, from bottom up -->
+	    <!-- "stacked_descending" = stacked in descending order, from bottom up-->
+
+	<param name="configuration_type" type="string" value="$(arg configu)" />
+	<param name="configuration" value="" />
+
+	    <!-- current gripper state (open/close & which block) -->
+
+	<param name="gripper_open" type="string" value="True" />
+	<param name="gripper_block" type="int" value="$(arg gripper_loc)" />
+	
+    	<!-- determine if robot_interface controls baxter or symbolic simulation-->
+
+	<param name="bax_or_sym" type="string" value="$(arg real_or_sym)" />
+
+	    <!-- determine if robot_interface controls baxter or symbolic simulation-->
+
+	<param name="hand_mode" type="string" value="$(arg hand)" />
+
+	    <!-- robot_interface does: -->
+	    <!-- 1: Maintain current state of robot and blocks -->
+	    <!-- 2: Accept commands to robot -->
+	    <!-- 3: Periodically report state of system -->
+
+        <!-- will be used to store block postions at all times -->
+
+	<param name="block_cart_coords" value="" />
+	<param name="block_orientation" value="" />
+	<param name="scat" value="1" />
+
+    	<param name="block_z" value="0.0445" />
+	<param name="table_z" value="" />
+	<param name="max_block_height" value="" />
+
+	<node name="robot_interface" pkg="group7_proj1" type="robot_interface.py" output="screen" />
+
+	<node name="controller" pkg="group7_proj1" type="controller.py" output="screen"/>
+
+</launch>

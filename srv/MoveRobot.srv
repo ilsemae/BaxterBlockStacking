@@ -1,0 +1,4 @@
+string Action
+int32 Target
+---
+bool Move
