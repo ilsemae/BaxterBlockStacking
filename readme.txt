@@ -1,3 +1,5 @@
+Code for Baxter block stacking.
+
 In your first terminal:
 	. ~/ros_ws/devel/setup.bash
 
